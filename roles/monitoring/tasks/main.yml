@@ -1,6 +1,6 @@
-- include: monit.yml
+- import_tasks: monit.yml
   tags: monit
-- include: logwatch.yml
+- import_tasks: logwatch.yml
   tags: logwatch
-- include: collectd.yml
+- import_tasks: collectd.yml
   tags: collectd

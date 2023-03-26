@@ -1,2 +1,2 @@
-- include: openvpn.yml
+- import_tasks: openvpn.yml
   tags: openvpn

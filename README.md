@@ -79,6 +79,8 @@ Create a new machine key for your server:
 
     tarsnap-keygen --keyfile roles/tarsnap/files/decrypted_tarsnap.key --user me@example.com --machine example.com
 
+Download a copy of this key and keep it somewhere safe!  There's no point having backups if you can't retrieve them when needed.
+
 ### 3. Prep the server
 
 For goodness sake, change the root password:
@@ -87,9 +89,8 @@ For goodness sake, change the root password:
 
 Create a user account for Ansible to do its thing through:
 
-    useradd deploy
+    useradd --create-home deploy
     passwd deploy
-    mkdir /home/deploy
 
 Authorize your ssh key if you want passwordless ssh login (optional):
 
@@ -135,6 +136,14 @@ Create `A` or `CNAME` records which point to your server's IP address:
 * `news.example.com` (for Selfoss)
 * `cloud.example.com` (for ownCloud)
 * `git.example.com` (for cgit)
+* `channels.example.com` (for XMPP Multi User Chat)
+* `upload.example.com` (for XMPP File Upload)
+
+Create `SRV` records for XMPP:
+
+* `_xmpp-client._tcp.example.com` -> `0 5 5222 example.com` (`{priority: 0, weight: 5, port: 5222}`)
+* `_xmpps-client._tcp.example.com` -> `0 5 5223 example.com` (`{priority: 0, weight: 5, port: 5223}`)
+* `_xmpp-server._tcp.example.com` -> `0 5 5269 example.com` (`{priority: 0, weight: 5, port: 5269}`)
 
 ### 6. Run the Ansible Playbooks
 
